@@ -2,8 +2,8 @@ package testdrvivendevelopment.example.money
 
 import testdrvivendevelopment.example.money.abstract.Money
 
-class Franc(amount: Int) : Money(amount) {
+class Franc(amount: Int, currency: String) : Money(amount, currency) {
   override fun times(multiplier: Int): Money {
-    return Franc(amount * multiplier)
+    return Money.franc(amount * multiplier)
   }
 }
