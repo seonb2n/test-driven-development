@@ -6,11 +6,11 @@ open class Money(val amount: Int, protected val currency: String): Expression {
     return this.amount == money.amount && this.currency == money.currency
   }
 
-  fun times(multiplier: Int): Money {
+  fun times(multiplier: Int): Expression {
     return Money(amount * multiplier, currency)
   }
 
-  fun plus(addend: Money): Sum {
+  override fun plus(addend: Expression): Expression {
     return Sum(this, addend)
   }
 

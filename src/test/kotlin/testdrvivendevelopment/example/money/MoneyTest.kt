@@ -1,6 +1,7 @@
 package testdrvivendevelopment.example.money
 
 import testdrvivendevelopment.example.money.abstract.Bank
+import testdrvivendevelopment.example.money.abstract.Expression
 import testdrvivendevelopment.example.money.abstract.Money
 import testdrvivendevelopment.example.money.abstract.Sum
 import kotlin.test.Test
@@ -81,5 +82,16 @@ class MoneyTest {
     bank.addRate("CHF", "USD", 2)
     val result = bank.reduce(Money.franc(2), "USD")
     assertEquals(Money.dollar(1), result)
+  }
+
+  @Test
+  fun testMixedAddition() {
+    val fiveBucks: Expression = Money.dollar(5)
+    val tenFrancs: Expression = Money.franc(10)
+    val bank = Bank()
+    bank.addRate("CHF", "USD", 2)
+
+    val result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+    assertEquals(Money.dollar(10), result)
   }
 }
