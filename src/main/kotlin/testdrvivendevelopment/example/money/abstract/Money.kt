@@ -18,8 +18,9 @@ open class Money(val amount: Int, protected val currency: String): Expression {
     return this.currency
   }
 
-  override fun reduce(to: String): Money {
-    return this
+  override fun reduce(bank: Bank, to: String): Money {
+    val rate = bank.rate(currency, to)
+    return Money(amount / rate, to)
   }
 
   companion object {
