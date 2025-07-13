@@ -1,6 +1,6 @@
 package testdrvivendevelopment.example.money.abstract
 
-open class Money(protected val amount: Int, protected val currency: String): Expression {
+open class Money(val amount: Int, protected val currency: String): Expression {
   override fun equals(other: Any?): Boolean {
     val money: Money = other as Money
     return this.amount == money.amount && this.currency == money.currency
@@ -10,12 +10,16 @@ open class Money(protected val amount: Int, protected val currency: String): Exp
     return Money(amount * multiplier, currency)
   }
 
-  fun plus(addend: Money): Expression {
-    return Money(amount + addend.amount, currency)
+  fun plus(addend: Money): Sum {
+    return Sum(this, addend)
   }
 
   fun currency(): String {
     return this.currency
+  }
+
+  override fun reduce(to: String): Money {
+    return this
   }
 
   companion object {
