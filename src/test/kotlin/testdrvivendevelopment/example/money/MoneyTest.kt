@@ -3,7 +3,6 @@ package testdrvivendevelopment.example.money
 import testdrvivendevelopment.example.money.abstract.Money
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -36,5 +35,10 @@ class MoneyTest {
   fun testCurrency() {
     assertEquals("USD", Money.dollar(1).currency())
     assertEquals("CHF", Money.franc(1).currency())
+  }
+
+  @Test
+  fun testDifferentClassEquality() {
+    assertTrue(Money(10, "CHF").equals(Franc(10, "CHF")))
   }
 }
