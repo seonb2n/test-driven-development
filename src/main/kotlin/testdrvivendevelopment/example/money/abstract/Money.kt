@@ -1,8 +1,5 @@
 package testdrvivendevelopment.example.money.abstract
 
-import testdrvivendevelopment.example.money.Dollar
-import testdrvivendevelopment.example.money.Franc
-
 open class Money(protected val amount: Int, protected val currency: String) {
   override fun equals(other: Any?): Boolean {
     val money: Money = other as Money
@@ -19,11 +16,11 @@ open class Money(protected val amount: Int, protected val currency: String) {
 
   companion object {
     fun dollar(amount: Int): Money {
-      return Dollar(amount, "USD")
+      return Money(amount, "USD")
     }
 
     fun franc(amount: Int): Money {
-      return Franc(amount, "CHF")
+      return Money(amount, "CHF")
     }
   }
 }
