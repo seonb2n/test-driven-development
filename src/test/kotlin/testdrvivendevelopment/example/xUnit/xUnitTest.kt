@@ -39,4 +39,24 @@ class xUnitTest {
     this.test.run()
     assertEquals("setUp testMethod tearDown ", test.log)
   }
+
+  @Test
+  fun testResult() {
+    val result = test.run()
+    assertEquals("1 run, 0 failed", result.summary())
+  }
+
+  @Test
+  fun testFailedResult() {
+    val result = test.run()
+    assertEquals("1 run, 1 failed", result.summary())
+  }
+
+  @Test
+  fun testFailedResultFormatting() {
+    val result = test.run()
+    result.testStarted()
+    result.testFailed()
+    assertEquals("1 run, 1 failed", result.summary())
+  }
 }

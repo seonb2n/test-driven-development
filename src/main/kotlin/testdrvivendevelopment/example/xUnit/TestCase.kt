@@ -9,14 +9,21 @@ open class TestCase(val name: String) {
 
   open fun tearDown() {}
 
-  fun run() {
+  fun run(): TestResult {
+    val result = TestResult()
+    result.testStarted()
     this.setUp()
-    val method = this::class.memberFunctions.find { it.name == this.name }
-    method?.let {
-      it.isAccessible = true
-      it.call(this)
+    try {
+      val method = this::class.memberFunctions.find { it.name == this.name }
+      method?.let {
+        it.isAccessible = true
+        it.call(this)
+      }
+    } catch (e : Exception) {
+      result.testFailed()
     }
     this.tearDown()
+    return result
   }
 
 }

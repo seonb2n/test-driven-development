@@ -7,6 +7,10 @@ class WasRun(name: String, var wasRun: Boolean = false, var wasSetUp: Boolean = 
     this.log += "testMethod "
   }
 
+  fun testBrokenMethod() {
+    throw Exception()
+  }
+
   override fun setUp() {
     this.wasRun = true
     this.log = "setUp "
