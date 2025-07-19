@@ -6,6 +6,12 @@ import kotlin.test.assertFalse
 
 class xUnitTest {
 
+  lateinit var test: WasRun
+
+  fun setUp() {
+    this.test = WasRun(name = "testMethod")
+  }
+
   @Test
   fun testWasRun() {
     val test = WasRun(name = "testMethod")
@@ -16,9 +22,15 @@ class xUnitTest {
 
   @Test
   fun testRunning() {
-    val test = WasRun(name = "testMethod")
-    assertFalse(test.wasRun)
-    test.run()
+    this.setUp()
+    this.test.run()
     assertTrue(test.wasRun)
+  }
+
+  @Test
+  fun testSetUp() {
+    this.setUp()
+    this.test.run()
+    assertTrue(test.wasSetUp)
   }
 }

@@ -5,7 +5,12 @@ import kotlin.reflect.jvm.isAccessible
 
 open class TestCase(val name: String) {
 
+  open fun setUp() {
+
+  }
+
   fun run() {
+    this.setUp()
     val method = this::class.memberFunctions.find { it.name == this.name }
     method?.let {
       it.isAccessible = true
