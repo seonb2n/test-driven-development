@@ -5,9 +5,9 @@ import kotlin.reflect.jvm.isAccessible
 
 open class TestCase(val name: String) {
 
-  open fun setUp() {
+  open fun setUp() {}
 
-  }
+  open fun tearDown() {}
 
   fun run() {
     this.setUp()
@@ -16,6 +16,7 @@ open class TestCase(val name: String) {
       it.isAccessible = true
       it.call(this)
     }
+    this.tearDown()
   }
 
 }
